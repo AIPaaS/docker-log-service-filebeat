@@ -19,6 +19,10 @@ COPY filebeat.yml /etc/filebeat/
 COPY fb_start.sh /
 RUN chmod 777 fb_start.sh
 
+#设置时区
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' > /etc/timezone
+
 # Declare log directory as volumes, for use of --volumes-from
 VOLUME ["/var/log"]
 
